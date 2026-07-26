@@ -10,3 +10,7 @@
  * 
  * display the book data using console.log.
  */
+
+let book: {bookISBNNumber: string, bookTitle: string, bookAuthor: string, bookPages: number} = {
+    bookISBNNumber: `01231525`,
+}

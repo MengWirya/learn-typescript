@@ -9,3 +9,19 @@
  * 
  * display the student data using console.log.
  */
+
+import promptSync from 'prompt-sync';
+const prompt = promptSync();
+
+let student: {studentID: string, studentName: string, studentAge: number, studentStatus: boolean} = {
+    studentID: prompt(`masukan ID anda:`),
+    studentName: prompt(`masukan nama anda:`),
+    studentAge: Number(prompt(`masukan umur anda:`)),
+    studentStatus: Boolean(prompt(`status murid: `))
+};
+
+console.log(`Deskripsi Murid`);
+console.log(`ID Murid ${student.studentID}`);
+console.log(`Nama Murid ${student.studentName}`);
+console.log(`Umur Murid ${student.studentAge}`);
+console.log(`Status Murid ${student.studentStatus}`);
