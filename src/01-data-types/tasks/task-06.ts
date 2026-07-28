@@ -9,3 +9,12 @@
  * 
  * display the product data using console.log.
  */
+
+// import PromptSync from "prompt-sync";
+// const prompt = PromptSync();
+
+// interface product {productCode: string, productName: string, productPrice: number, productStock: number, productWeight: number, productAveragerating: number, productIsDiscount: boolean}
+
+// for (let i = 1; i <= 3; i++) {
+
+// }

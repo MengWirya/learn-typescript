@@ -22,22 +22,26 @@ for (let i = 1; i <= 3; i++) {
     const nameInput = prompt(`Masukan namamu: `);
     const ageInput = Number(prompt(`Masukan umurmu: `));
 
-    let statusInput = ""
+    let isStudent = false;
     while (true) {
-        const booleanInput = prompt(`Status siswa (True/False): `);
-        statusInput = booleanInput ? booleanInput.toLowerCase().trim() : "";
+        const inputBoolean = prompt(`Apakah hari ini masuk? (True/False): `);
+        const statusInput = inputBoolean ? inputBoolean.trim().toLowerCase() : "";
 
-        if (statusInput === "true" || statusInput === "false") {
+        if (statusInput === "true") {
+            isStudent = true;
+            break;
+        } else if (statusInput === "false") {
+            isStudent = false;
             break;
         }
-        alert("Input salah! Anda hanya boleh mengetik 'true' atau 'false'.");
+        console.log(`Input hanya "True" atau "False"`);
     }
 
     let newStudent: student = {
         studentID: idInput ?? "",
         studentName: nameInput ?? "",
         studentAge: ageInput ?? "",
-        studentStatus: statusInput === "true",
+        studentStatus: isStudent,
     }
 
     studentList.push(newStudent);

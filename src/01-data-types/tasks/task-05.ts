@@ -9,3 +9,49 @@
  * 
  * display the attendance data using console.log.
  */
+
+import PromptSync from "prompt-sync";
+const prompt = PromptSync();
+
+// let todayDate: Date = new Date();
+interface employee {employeeID: string, employeeName: string, employeeDate: Date, employeeCheckIn: number, employeeCheckOut: number, employeeWorkHour: number, employeeIsHere: boolean}
+
+let employeeList: employee[] = [];
+
+for (let i = 1; i <= 3; i++) {
+    const inputID = prompt(`Masukan ID karyawan`);
+    const inputName = prompt(`Masukan ID karyawan`);
+    const inputCheckIn = Number(prompt(`Masukan ID karyawan`));
+    const inputCheckOut = Number(prompt(`Masukan ID karyawan`));
+    const workHour = inputCheckOut - inputCheckIn;
+    // const inputWorkHour = prompt(`Masukan ID karyawan`);
+
+    let isHere = false;
+    while (true) {
+        const inputBoolean = prompt(`Apakah hari ini masuk? (True/False): `);
+        const statusInput = inputBoolean ? inputBoolean.trim().toLowerCase() : "";
+
+        if (statusInput === "true") {
+            isHere = true;
+            break;
+        } else if (statusInput === "false") {
+            isHere = false;
+            break;
+        }
+        console.log(`Input hanya "True" atau "False"`);
+    }
+
+    let newEmployee: employee = {
+        employeeID: inputID ?? "",
+        employeeName: inputName ?? "",
+        employeeDate: new Date(),
+        employeeCheckIn: inputCheckIn ?? "",
+        employeeCheckOut: inputCheckOut ?? "",
+        employeeWorkHour: workHour,
+        employeeIsHere: isHere,
+    }
+
+    employeeList.push(newEmployee)
+}
+
+console.log(`List karyawan perusahaan hari ini: ${employeeList}`)
