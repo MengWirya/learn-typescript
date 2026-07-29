@@ -24,7 +24,7 @@ for (let i = 1; i <= 3; i++) {
 
     let isStudent = false;
     while (true) {
-        const inputBoolean = prompt(`Apakah hari ini masuk? (True/False): `);
+        const inputBoolean = prompt(`Apakah seorang siswa? (True/False): `);
         const statusInput = inputBoolean ? inputBoolean.trim().toLowerCase() : "";
 
         if (statusInput === "true") {
