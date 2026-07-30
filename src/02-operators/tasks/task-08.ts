@@ -24,3 +24,33 @@
  * - Final bill
  * - Green Energy Program eligibility
  */
+
+interface information {previousMeter: number, currentMeter: number, pricePerKWh: number, panelIsInstalled: boolean, isEnergySaving: boolean}
+interface extraInformation {energyConsumption: number, electricityBill: number, finalBill: number, qualifiesProgram: boolean}
+
+const MamadHome: information = {
+    previousMeter: 25640,
+    currentMeter: 25892,
+    pricePerKWh: 1650,
+    panelIsInstalled: true,
+    isEnergySaving: false
+}
+
+function calculateInfo(data: information): extraInformation {
+    const totalEnergy = data.currentMeter - data.previousMeter
+    const electricityBill = totalEnergy * data.pricePerKWh;
+    let discountGained = 0;
+    if (data.panelIsInstalled) discountGained += 0.20;
+    if (data.isEnergySaving) discountGained += 0.05;
+    const finalBill = electricityBill - (electricityBill * discountGained)
+    const isQualifies = (totalEnergy < 300 && data.panelIsInstalled && data.isEnergySaving)
+
+    return {
+        energyConsumption: totalEnergy,
+        electricityBill: electricityBill,
+        finalBill: finalBill,
+        qualifiesProgram: isQualifies
+    }
+}
+
+console.table(calculateInfo(MamadHome))

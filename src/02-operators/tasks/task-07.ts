@@ -21,3 +21,31 @@
  * - Final payment
  * - Whether the guest is eligible for free breakfast
  */
+
+interface guest {roomPrice: number, nightStayed: number, servicePrice: number, tax: number, isVIP: boolean}
+interface payment {roomSubtotal: number, discount: number, taxTotal: number, freeBreakfast: boolean, totalPrice: number}
+
+const AlbiGuest: guest = {
+    roomPrice: 650000,
+    nightStayed: 4,
+    servicePrice: 120000,
+    tax: 0.11,
+    isVIP: true
+}
+
+function calculatePrice(data: guest): payment {
+    const subTotal = data.roomPrice * data.nightStayed
+    const discount = data.isVIP ? subTotal * 0.12 : 0
+    const tax = (subTotal + discount) * data.tax
+    const freeBreakfast = (data.nightStayed >= 3 || data.isVIP)
+    
+    return {
+        roomSubtotal: subTotal,
+        discount: discount,
+        taxTotal: tax,
+        freeBreakfast: freeBreakfast,
+        totalPrice: subTotal + tax + data.servicePrice 
+    }
+}
+
+console.table(calculatePrice(AlbiGuest))

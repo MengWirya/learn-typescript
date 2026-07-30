@@ -34,5 +34,4 @@ function checkEligible(check: graduation): graduationResult {
     }
 }
 
-const checkResult = checkEligible(JohnSiswa);
-console.table(checkResult)
+console.table(checkEligible(JohnSiswa))

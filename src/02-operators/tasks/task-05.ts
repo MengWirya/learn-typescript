@@ -33,3 +33,31 @@
  * - Calculate the remaining scholarship budget.
  * - Display whether the student is accepted.
  */
+
+let scholarshipBudget = 500000000
+interface student {studentName: string, studentGPA: number, studentIncome: number, studentCompetition: number, studentDisciplinaryRecord: boolean, studentDocumentCompletition: boolean}
+interface studentScholarship extends student {scholarIsEligible: boolean, scholarshipAmount: number}
+
+let studentAlya: student = {
+    studentName: "Alya Putri",
+    studentGPA: 3.89,
+    studentIncome: 4200000,
+    studentCompetition: 4,
+    studentDisciplinaryRecord: false,
+    studentDocumentCompletition: true
+}
+
+function checkEligible(data: student): studentScholarship {
+    let isEligible = (data.studentGPA >= 3.75 && data.studentIncome <= 5000000 && data.studentCompetition >= 3 && !data.studentDisciplinaryRecord && data.studentDocumentCompletition)
+    isEligible ? scholarshipBudget -= 12000000 : null
+
+    return {
+        ...data,
+        scholarIsEligible: isEligible,
+        scholarshipAmount: isEligible ? 12000000 : 0
+    }
+}
+
+console.table(checkEligible(studentAlya))
+console.log(`total remaining budget for scholarship: ${scholarshipBudget}`)
+

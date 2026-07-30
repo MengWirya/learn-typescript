@@ -48,5 +48,4 @@ function calculateBonus(calculate: Employee): EmployeeBonus {
     };
 }
 
-const calculateJohn = calculateBonus(JohnEmployee)
-console.table(calculateJohn)
+console.table(calculateBonus(JohnEmployee))

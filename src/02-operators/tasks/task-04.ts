@@ -53,5 +53,4 @@ function calculatePayment(Buyer: Product[], isPremium: boolean): ProductPayment 
     }
 }
 
-const CalculateReza = calculatePayment(RezaBuyer, true)
-console.table(CalculateReza)
+console.table(calculatePayment(RezaBuyer, true))
