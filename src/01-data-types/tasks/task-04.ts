@@ -37,8 +37,3 @@ for (let i = 1; i <= 3; i++) {
 }
 
 console.log(`Book list: ${bookList}`);
-
-// enum category {
-//     Fiction = "FICTION",
-//     NonFiction = "NONFICTION"
-// }

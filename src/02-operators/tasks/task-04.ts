@@ -22,3 +22,36 @@
  *  - Calculate the final payment.
 
  */
+
+interface Product {productName: string, productPrice: number, productQuantity: number}
+interface ProductPayment {customerIsPremium: boolean, productTotalQuantity: number, paymentSubtotal: number, paymentgainDiscount: boolean, paymentTotal: number}
+
+const RezaBuyer: Product[] = [
+    {productName: "Mechanical Keyboard", productPrice: 850000, productQuantity: 1},
+    {productName: "Wireless Mouse", productPrice: 275000, productQuantity: 2},
+    {productName: "Mouse Pad", productPrice: 120000, productQuantity: 1},
+]
+
+function calculatePayment(Buyer: Product[], isPremium: boolean): ProductPayment {
+    let TotalQuantity = 0
+    let SubTotal = 0
+
+    Buyer.forEach((product) => {
+        TotalQuantity += product.productQuantity
+        SubTotal += product.productPrice * product.productQuantity
+    })
+
+    let gainDiscount = SubTotal > 1000000
+    let Total = gainDiscount ? SubTotal * 0.9 : SubTotal
+
+    return {
+        customerIsPremium: isPremium,
+        productTotalQuantity: TotalQuantity,
+        paymentSubtotal: SubTotal,
+        paymentgainDiscount: gainDiscount,
+        paymentTotal: Total
+    }
+}
+
+const CalculateReza = calculatePayment(RezaBuyer, true)
+console.table(CalculateReza)

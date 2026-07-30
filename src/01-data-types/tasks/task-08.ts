@@ -43,12 +43,3 @@ console.log(`Deskripsi Suhu: `);
 greenhouseReadings.forEach((AirTemperature) => {
     console.log(`Deskripsi Suhu pada jam ${AirTemperature.time} setinggi ${AirTemperature.temperature} `);
 })
-
-// EKSPERIMEN
-// interface AirTemperature {Time: number; Temperature: number}
-
-// for (let i = 8; i <= 15; i++) {
-//     let  {
-
-//     }
-// }

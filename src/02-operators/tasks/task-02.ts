@@ -14,3 +14,25 @@
  * Task: Store and display the result in a variable named "isEligible"
 
  */
+
+interface graduation {finalScore: number, attendanceScore: number, tuitionIsPaid: boolean}
+
+const JohnSiswa: graduation = {
+    finalScore: 82,
+    attendanceScore: 94,
+    tuitionIsPaid: true,
+}
+
+interface graduationResult extends graduation {
+    isEligible: boolean
+}
+
+function checkEligible(check: graduation): graduationResult {
+    return{
+        ...check,
+        isEligible: (check.finalScore >= 75 && check.attendanceScore >= 90 && check.tuitionIsPaid) ? true : false
+    }
+}
+
+const checkResult = checkEligible(JohnSiswa);
+console.table(checkResult)

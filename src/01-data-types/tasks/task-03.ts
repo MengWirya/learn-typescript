@@ -48,20 +48,3 @@ for (let i = 1; i <= 3; i++) {
 }
 
 console.log(`List siswa: ${studentList}`);
-
-// ----------- TESTING -----------
-// import promptSync from 'prompt-sync';
-// const prompt = promptSync();
-
-// let student: {studentID: string, studentName: string, studentAge: number, studentStatus: boolean} = {
-//     studentID: prompt(`masukan ID anda:`),
-//     studentName: prompt(`masukan nama anda:`),
-//     studentAge: Number(prompt(`masukan umur anda:`)),
-//     studentStatus: Boolean(prompt(`status murid: `).toLowerCase())
-// };
-
-// console.log(`Deskripsi Murid`);
-// console.log(`ID Murid ${student.studentID}`);
-// console.log(`Nama Murid ${student.studentName}`);
-// console.log(`Umur Murid ${student.studentAge}`);
-// console.log(`Status Murid ${student.studentStatus}`);

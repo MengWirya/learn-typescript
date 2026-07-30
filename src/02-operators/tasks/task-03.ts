@@ -17,3 +17,36 @@
  * - Bonus
  * - Final salary
  */
+
+interface Employee {employeeName: string, employeeStandardSalary: number, employeeOvertimeHour: number, employeeOvertimeRate: number}
+
+const JohnEmployee: Employee = {
+    employeeName: "John Doe Kenzie",
+    employeeStandardSalary: 5000000,
+    employeeOvertimeHour: 12,
+    employeeOvertimeRate: 50000,
+}
+
+interface EmployeeBonus extends Employee {
+    employeeOvertimePay: number;
+    employeeBonus: number;
+    employeeFinalSalary: number;
+}
+
+function calculateBonus(calculate: Employee): EmployeeBonus {
+    const isOvertime = calculate.employeeOvertimeHour > 0;
+
+    const employeeOvertimePay = isOvertime ? calculate.employeeOvertimeHour * calculate.employeeOvertimeRate : 0;
+    const employeeBonus = isOvertime ? 300000 : 0;
+    const employeeFinalSalary = calculate.employeeStandardSalary + employeeOvertimePay + employeeBonus;
+
+    return {
+        ...calculate,
+        employeeOvertimePay,
+        employeeBonus,
+        employeeFinalSalary
+    };
+}
+
+const calculateJohn = calculateBonus(JohnEmployee)
+console.table(calculateJohn)
