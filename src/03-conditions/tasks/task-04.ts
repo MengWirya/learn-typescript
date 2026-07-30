@@ -22,3 +22,29 @@
  * 2. Implement the logic using nested if statements.
  * 3. Display the reservation result.
  */
+
+interface reservation {customerName: string, isPremium: boolean, roomAvaible: boolean}
+
+const todayReversation:  reservation = {
+    customerName: "Nadia Putri",
+    isPremium: true,
+    roomAvaible: false
+}
+
+function checkReversation(data: reservation): string {
+    if (data.roomAvaible) {
+        if (data.isPremium) {
+            return "congratulation, you received a free room upgrade"
+        } else {
+            return "You will receive the reserved room"
+        }
+    } else {
+        if (data.isPremium) {
+            return "Sorry room are not avaible, you will be placed on priority wait list"
+        } else {
+            return "Sorry room are not avaible"
+        }
+    }
+}
+
+console.log(checkReversation(todayReversation))

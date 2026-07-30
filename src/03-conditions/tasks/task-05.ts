@@ -32,3 +32,23 @@
  *  - Implement the second screening only if the first screening is passed.
  *  - Display the correct result.
  */
+
+interface student {studentName: string, studentGPA: number, studentIncome: number, studentCompetition: number, studentDisciplinaryRecord: boolean, studentDocumentCompletition: boolean}
+
+let studentFajar: student = {
+    studentName: "Fajar Hidayat",
+    studentGPA: 3.89,
+    studentIncome: 4200000,
+    studentCompetition: 4,
+    studentDisciplinaryRecord: false,
+    studentDocumentCompletition: true
+}
+
+function checkEligible(data: student): string {
+    let firstScreening = (data.studentGPA >= 3.75 && data.studentIncome < 5000000)
+    let secondScreening = (data.studentCompetition >= 3 && !data.studentDisciplinaryRecord && data.studentDocumentCompletition)
+
+    return !firstScreening ? "Failed first Screening" : secondScreening ? "Scholarship Approved" : "Passed First Screening, but Failed Second Screening"
+}
+
+console.table(checkEligible(studentFajar))

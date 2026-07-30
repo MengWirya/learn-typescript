@@ -23,3 +23,39 @@
  * 2. Implement the hospital workflow using conditional statements.
  * 3. Display the patient's destination.
  */
+
+interface patient {patientName: string, patientIsCritical: boolean, patientHasAppointment: boolean, patientAge: number, patientHasInsurance: boolean}
+
+const TodayPatient: patient = {
+    patientName: "Siti Rahma",
+    patientIsCritical: false,
+    patientHasAppointment: true,
+    patientAge: 67,
+    patientHasInsurance: true
+}
+
+enum Queue {
+    Emergency = "Emergency Room",
+    Priority = "Priority Queue",
+    Regular = "Regular Queue",
+    Insurance = "Insurance Counter",
+    General = "General Counter",
+}
+
+function checkPlacement(data: patient): Queue {
+    const isOld = data.patientAge >= 60
+    
+    if (data.patientIsCritical) {
+        return Queue.Emergency
+    } else if (data.patientHasAppointment) {
+        if (isOld) {
+            return Queue.Priority
+        } else {return Queue.Regular}
+    } else {
+        if (data.patientHasInsurance) {
+            return Queue.Insurance
+        } else {return Queue.General}
+    }
+}
+
+console.log(checkPlacement(TodayPatient))

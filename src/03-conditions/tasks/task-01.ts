@@ -20,3 +20,25 @@
  * will be display "Congratulations! You are eligible to graduate.", 
  * otherwise display "You are not eligible to graduate."
  */
+
+interface graduation {studentName: string, finalScore: number, attendanceScore: number, tuitionIsPaid: boolean}
+
+const siswiAlya: graduation = {
+    studentName: "Alya Putri",
+    finalScore: 82,
+    attendanceScore: 94,
+    tuitionIsPaid: true,
+}
+
+interface graduationResult extends graduation {
+    isEligible: string
+}
+
+function checkEligible(check: graduation): graduationResult {
+    return{
+        ...check,
+        isEligible: (check.finalScore >= 75 && check.attendanceScore >= 90 && check.tuitionIsPaid) ? "Congratulations! You are eligible to graduate." : "You are not eligible to graduate."
+    }
+}
+
+console.table(checkEligible(siswiAlya))
