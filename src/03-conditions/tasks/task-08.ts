@@ -27,3 +27,29 @@
  * 2. Implement the airline decision process.
  * 3. Display the correct message.
  */
+
+enum cabinClass {
+    Economy = "Economy Class",
+    Business = "Business Class"
+}
+
+interface passenger {passengerName: string, passengerCheckIn: boolean, passengerCabinClass: cabinClass, baggageWeight: number}
+
+const todayPassenger: passenger = {
+    passengerName: "Fajar Nugroho",
+    passengerCheckIn: true,
+    passengerCabinClass: cabinClass.Economy,
+    baggageWeight: 24
+}
+
+function checkPlacement(data: passenger): string {
+    if(data.passengerCheckIn) {
+        if (data.baggageWeight > 20) {
+            return data.passengerCabinClass === cabinClass.Business ? "Extra baggage allowed." : "Additional baggage fee required."
+        } else {return "Proceed to boarding pass printing."}
+    } else {
+        return "Please complete online check-in first."
+    }
+}
+
+console.log(checkPlacement(todayPassenger))

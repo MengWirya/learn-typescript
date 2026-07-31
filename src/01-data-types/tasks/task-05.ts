@@ -13,7 +13,6 @@
 import PromptSync from "prompt-sync";
 const prompt = PromptSync();
 
-// let todayDate: Date = new Date();
 interface employee {employeeID: string, employeeName: string, employeeDate: Date, employeeCheckIn: number, employeeCheckOut: number, employeeWorkHour: number, employeeIsHere: boolean}
 
 let employeeList: employee[] = [];
@@ -24,7 +23,6 @@ for (let i = 1; i <= 3; i++) {
     const inputCheckIn = Number(prompt(`Masukan ID karyawan`));
     const inputCheckOut = Number(prompt(`Masukan ID karyawan`));
     const workHour = inputCheckOut - inputCheckIn;
-    // const inputWorkHour = prompt(`Masukan ID karyawan`);
 
     let isHere = false;
     while (true) {

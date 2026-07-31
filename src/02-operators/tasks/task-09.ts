@@ -48,7 +48,7 @@ const KenzieCustomer: Customer = {
 const KenzieShopping: Product[] = [
     {productName: "Mechanical Keyboard", productPrice: 850000, productQuantity: 1},
     {productName: "Wireless Mouse", productPrice: 275000, productQuantity: 2},
-    {productName: "Mouse Pad", productPrice: 120000, productQuantity: 1},
+    {productName: "Mouse Pad", productPrice: 420000, productQuantity: 1},
 ]
 
 function calculateReceipt(customer: Customer, shoppingCart: Product[]): Receipt {
@@ -62,9 +62,10 @@ function calculateReceipt(customer: Customer, shoppingCart: Product[]): Receipt 
     const priceAfterDiscount = subTotal - membershipDiscount
     const voucherDeduction = customer.voucherValue - priceAfterDiscount < 0 ? customer.voucherValue : customer.voucherValue - priceAfterDiscount 
     const priceBeforeTax = priceAfterDiscount - customer.voucherValue
-    const tax = priceBeforeTax * 0.1
+    const tax = priceBeforeTax * 0.11
     const finalPrice = priceBeforeTax + tax
     const rewardPayment = finalPrice / customer.pointRate
+    const finalFinalPrice = finalPrice - (rewardPayment * 10000)
     const isFreeShipping = (customer.isPremium || priceBeforeTax > 1500000)
     
     return {

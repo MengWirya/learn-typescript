@@ -36,3 +36,26 @@ Student Tasks
 - Translate every business rule into conditional statements.
 - Display the final machine status.
  */
+
+interface machine {isOn: boolean, machineTemperture: number, isHighVibration: boolean, productionSpeed: number}
+
+const todayMachine: machine = {
+    isOn: true,
+    machineTemperture: 95,
+    isHighVibration: false,
+    productionSpeed: 92
+}
+
+function checkMachine(data: machine): string {
+    if (data.isOn) {
+        if (data.machineTemperture > 90) {
+            return data.isHighVibration ? "Emergency Shutdown" : "Cooling Required"
+        } else {
+            return data.productionSpeed < 80 ? "Performance Warning" : "Machine Operating Normally"
+        }
+    } else {
+        return "Display Machine Offline."
+    }
+}
+
+console.log(checkMachine(todayMachine))

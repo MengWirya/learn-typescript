@@ -25,8 +25,27 @@
  * | Existing Debt      | 2500000     |
  * | Permanent Employee | Yes         |
  * 
- * Student Tasks:
+ * student Tasks:
  * 1. Declare all variables.
  * 2. Implement both screening stages.
  * 3. Display the loan decision.
  */
+
+interface applicant {applicantName: string, applicantIncome: number, applicantCredit: number, applicantExistingDebt: number, applicantEmployee: boolean}
+
+let applicantToday: applicant = {
+    applicantName: "Andi Wijaya",
+    applicantIncome: 10000000,
+    applicantCredit: 725,
+    applicantExistingDebt: 2500000,
+    applicantEmployee: true,
+}
+
+function checkEligible(data: applicant): string {
+    let firstScreening = (data.applicantIncome >= 700 && data.applicantIncome >= 8000000)
+    let secondScreening = (data.applicantEmployee && data.applicantExistingDebt <= (data.applicantIncome * 0.3))
+
+    return !firstScreening ? "Loan Rejected" : secondScreening ? "Loan Approved" : "Manual Review"
+}
+
+console.table(checkEligible(applicantToday))
