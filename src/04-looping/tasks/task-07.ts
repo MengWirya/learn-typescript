@@ -34,4 +34,4 @@ const attendancePercentage = (presentStudent / attendances.length) * 100
 console.log("Deskripsi hari ini")
 console.log(`Jumlah Siswa masuk: ${presentStudent}`)
 console.log(`Jumlah Siswa absen: ${absentStudent}`)
-console.log(`Persentase siswa masuk: ${attendancePercentage}`)
+console.log(`Persentase siswa masuk: ${attendancePercentage}%`)

@@ -1,0 +1,54 @@
+/**
+ * An online store wants to generate a daily sales dashboard. All transaction amounts are stored in an array.
+ * Instead of writing one long program, the development team decides to split the calculations into reusable functions.
+ * The dashboard should display:
+ * - Total sales
+ * - Highest transaction
+ * - Lowest transaction
+ * - Average transaction
+ * - Number of transactions above Rp500,000
+ * 
+ * Student Tasks
+ * Create the following functions:
+ */
+
+function calculateTotalSales(sales: number[]): number {
+    let totalSale = 0
+    sales.forEach((sale) => {
+        totalSale += sale
+    })
+    return totalSale
+}
+
+function findHighestTransaction(sales: number[]): number {
+    let HighestSale = -Infinity
+    sales.forEach((sale) => {
+        sale > HighestSale ? HighestSale = sale : ""
+    })
+    return HighestSale
+}
+
+function findLowestTransaction(sales: number[]): number {
+    let LowestSale = Infinity
+    sales.forEach((sale) => {
+        sale < LowestSale ? LowestSale = sale : null
+    })
+    return LowestSale
+}
+
+function calculateAverageSale(sales: number[]): number {
+    let totalSale = 0
+    sales.forEach((sale) => {
+        totalSale += sale
+    })
+    let averagesale = totalSale / sales.length
+    return averagesale
+}
+
+function countLargeTransactions(sales: number[], minimumAmount: number): number {
+    let countSale = 0
+    sales.forEach((sale) => {
+        sale > 500000 ? countSale++ : null
+    })
+    return countSale
+}
