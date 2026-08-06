@@ -82,7 +82,7 @@ function printEnrollmentReport() {
 
     const EnrollmentReport = {
       "Total Active Student": countActiveStudents(),
-      "Total Inactive Student": countInactiveStudents(), // Perbaikan: panggil fungsi inactive
+      "Total Inactive Student": countInactiveStudents(), 
       "Major: Software": majors.software,
       "Major: Network": majors.network,
       "Major: Multimedia": majors.multimedia,

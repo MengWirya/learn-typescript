@@ -54,3 +54,23 @@ const submissions = [
         score: 96
     }
 ];
+
+function generateReport(): object {
+    const TotalStudent = submissions.length
+    let Submitted = submissions.reduce((acc, current) => current.submitted ? acc + 1 : acc, 0)
+    let MissingAssignment = submissions.reduce((acc, current) => !current.submitted ? acc + 1 : acc, 0)
+    let TotalPassed = submissions.reduce((acc, current) => current.score >= 75 ? acc + 1 : acc, 0)
+    let TotalFailed = submissions.reduce((acc, current) => (current.submitted && current.score <= 75) ? acc + 1 : acc, 0)
+    let totalScore = submissions.reduce((acc, current) => acc += current.score, 0)
+    let averageScore = totalScore / TotalStudent
+    let HighestScore = submissions.reduce((acc, current) => acc < current.score ? acc = current.score : acc, -Infinity)
+    let lowestScore = submissions.reduce((acc, current) => acc > current.score ? acc = current.score : acc, Infinity)
+
+    return {TotalStudent, Submitted, MissingAssignment, TotalPassed, TotalFailed, averageScore, HighestScore, lowestScore}
+}
+
+function printReport() {
+    console.table(generateReport())
+}
+
+printReport()

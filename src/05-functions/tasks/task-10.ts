@@ -92,3 +92,61 @@ const enrollments = [
         duration: 20
     }
 ];
+
+function calculatesReport() {
+    const totalEnrollment = enrollments.length;
+    let CompletedEnrollment = 0;
+    let IncompleteEnrollment = 0;
+    let totalStudentPassed = 0;
+    let courseTypescript: number[] = []
+    let courseDatabase: number[] = []
+    let courseBackend: number[] = []
+
+    enrollments.forEach((enrollment) => {
+        enrollment.completed ? CompletedEnrollment++ : IncompleteEnrollment++;
+        enrollment.score >= 75 ? totalStudentPassed++ : totalStudentPassed;
+        enrollment.course === "TypeScript" ? courseTypescript.push(enrollment.score) : enrollment.course === "Database" ? courseDatabase.push(enrollment.score) : courseBackend.push(enrollment.score)
+    });
+    const completedPercentage = CompletedEnrollment / totalEnrollment;
+
+    const allScore = enrollments.map(enrollment => enrollment.score || 0);
+    const highestScore = Math.max(...allScore);
+    const lowestScore = Math.min(...allScore);
+    const totalScore = allScore.reduce((sum, score) => sum + score, 0);
+    const averageScore = totalScore / totalEnrollment;
+    const totalTSStudent = courseTypescript.length
+    const totalDatabaseStudent = courseDatabase.length
+    const totalBackendStudent = courseBackend.length
+    const totalTSScore = courseTypescript.reduce((sum, score) => sum + score, 0);
+    const totalDatabaseScore = courseDatabase.reduce((sum, score) => sum + score, 0);
+    const totalBackendScore = courseBackend.reduce((sum, score) => sum + score, 0);
+    const averageTS = totalTSScore / totalTSStudent
+    const averageDatabase = totalDatabaseScore / totalDatabaseStudent
+    const averageBackend = totalBackendScore / totalBackendStudent
+    
+
+
+    return {
+        totalEnrollment,
+        CompletedEnrollment,
+        IncompleteEnrollment,
+        completedPercentage,
+        highestScore,
+        lowestScore,
+        totalScore,
+        averageScore,
+        totalStudentPassed,
+        totalTSStudent,
+        totalDatabaseStudent,
+        totalBackendStudent,
+        averageTS,
+        averageDatabase,
+        averageBackend
+    };
+}
+
+function printTable() {
+    console.table(calculatesReport())
+}
+
+printTable()
