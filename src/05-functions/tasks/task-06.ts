@@ -12,6 +12,19 @@
  * Create the following functions:
  */
 
+const sales = [
+  125000,
+  780000,
+  250000,
+  99000,
+  540000,
+  670000,
+  180000,
+  450000,
+  310000,
+  820000
+];
+
 function calculateTotalSales(sales: number[]): number {
     let totalSale = 0
     sales.forEach((sale) => {
