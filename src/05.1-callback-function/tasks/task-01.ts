@@ -5,12 +5,8 @@
  * For example, when a student successfully registers for a course, the system can display a registration message.
  */
 
-function registerStudent(
-    studentName: string,
-    callback: (name: string) => void
-): void {
+function registerStudent(studentName: string, callback: (name: string) => void): void {
     console.log(`Registering ${studentName}...`);
-
     callback(studentName);
 }
 
@@ -27,3 +23,10 @@ registerStudent(`John Cena`, showRegistrationMessage)
  * create another function that display welcomming message for entire student!
  * Don't forget to implement callback function.
  * */
+
+function showWelcomeMessage(name: string): void {
+    console.log(`Welcome ${name}`)
+}
+
+console.log(`New Function`)
+registerStudent(`Kenzie Abqary`, showWelcomeMessage)

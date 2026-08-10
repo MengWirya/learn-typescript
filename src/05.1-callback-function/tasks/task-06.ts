@@ -26,7 +26,7 @@ type Employee = {
     salary: number
     performance: number
 }
-type PERFORMANCE_STATUS = "Exceeds Expectations" | "Meets Expectations" | "Needs Improvement"
+type PERFORMANCE_STATUS = "Exceeds Expectations" | "Meets Expectations" | "Needs Improvement" | "Unsatisfactory"
 type EMPLOYEE_BONUS = Employee & { bonus: number }
 type EMPLOYEE_PERFORMANCE = Employee & { status: PERFORMANCE_STATUS }
 
@@ -40,18 +40,27 @@ const employees: Employee[] = [
 
 
 function calculateFinalSalary(selectedEmployee: Employee): EMPLOYEE_BONUS {
-    // implementation: this function return employee data with bonus and updated final salary
-    return;
+    const totalSalary = selectedEmployee.performance >= 90 ? selectedEmployee.salary * 1.15 : selectedEmployee.performance >= 80 ? (selectedEmployee.salary * 110) / 100 : selectedEmployee.performance >= 70 ? selectedEmployee.salary * 1.05 : selectedEmployee.salary
+    return {
+        ...selectedEmployee,
+        bonus: totalSalary
+    };
 }
 function getPerformanceStatus(selectedEmployee: Employee): EMPLOYEE_PERFORMANCE {
-    return;
+    const performanceStatus = selectedEmployee.performance >= 90 ? "Exceeds Expectations" : selectedEmployee.performance >= 80 ? "Meets Expectations" : selectedEmployee.performance >= 70 ? "Needs Improvement" : "Unsatisfactory"
+    return {
+        ...selectedEmployee,
+        status: performanceStatus
+    };
 }
 
-function employeeProcess<T>(
-    arr: Employee[],
-    callback: (employee: Employee) => T
-): T[] {
-    return;
+function employeeProcess<T>(arr: Employee[], callback: (employee: Employee) => T): T[] {
+    const results: T[] = []
+    for (let index = 0; index < arr.length; index++) {
+        const result = callback(arr[index])
+        results.push(result)
+    }
+    return results;
 }
 
 const employeeWithFinalSalary = employeeProcess(employees, calculateFinalSalary)

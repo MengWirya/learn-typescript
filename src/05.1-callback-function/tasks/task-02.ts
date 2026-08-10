@@ -25,22 +25,35 @@ const scores = [85, 72, 91, 64, 88];
  * function that receives the processing logic as a callback.
  */
 
-function processScores(
-    scores: number[],
-    callback: (score: number) => void
-): void {
-    // implementation
+function processScores(scores: number[], callback: (score: number) => void): void {
+    for (const score of scores) {
+        callback(score)
+    }
 }
 
 function printScore(score: number) {
-    // implementation
+    console.log(`Score siswa: ${score}`)
+}
+
+function isPass(score: number) {
+    score < 70 ? console.log(`Failed`) : console.log(`Passed`)
 }
 
 function showGrade(score: number) {
-    // implementation
+    if (score >= 90) {
+        console.log(`Grade: A`)
+    } else if (score >= 80) {
+        console.log(`Grade: B`)
+    } else if (score >= 70) {
+        console.log(`Grade: C`)
+    } else {console.log(`Grade D`)}
 }
 
-
-// implementation of callback function
+console.log(`\nScore List:`)
 processScores(scores, printScore)
+
+console.log(`\nPass List:`)
+processScores(scores, isPass)
+
+console.log(`\nGrade List:`)
 processScores(scores, showGrade)
