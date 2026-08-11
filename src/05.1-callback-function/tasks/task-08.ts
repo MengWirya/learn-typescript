@@ -2,7 +2,14 @@
  * A company has a simple data-processing engine used to analyze transaction records.
  */
 
-const transactions = [
+type paymentStatus = "paid" | "pending" | "cancelled"
+interface transaction {id: string, customer: string, amount: number, status: paymentStatus}
+
+type paymentCategory = "HIGH VALUE" | "MEDIUM VALUE" | "LOW VALUE"
+interface transactionCategory extends transaction {category: paymentCategory}
+interface transactionFee extends transaction {platformFee: number}
+
+const transactions: transaction[] = [
     {
         id: "TRX001",
         customer: "Alya",
@@ -46,3 +53,41 @@ const transactions = [
  *   - Pending transactions → 1%
  *   - Cancelled transactions → 0%
  */
+
+function processPayment<T>(arr: transaction[], callback: (payment: transaction) => T): T[] {
+    const results: T[] = []
+    for (let index = 0; index < arr.length; index++) {
+        const result = callback(arr[index])
+        results.push(result)
+    }
+    return results
+}
+
+function printPayment(payment: transaction) {
+    console.log(`${payment.customer}`)
+}
+
+function categoryPayment(payment: transaction): transactionCategory {
+    const categoryResult = payment.amount >= 2000000 ? "HIGH VALUE" : payment.amount >= 1000000 ? "MEDIUM VALUE" : "LOW VALUE"
+
+    return {
+        ...payment,
+        category: categoryResult
+    }
+}
+
+function feePayment(payment: transaction): transactionFee {
+    const fee = payment.status == "paid" ? payment.amount * 0.02 : payment.status == "pending" ? payment.amount * 0.01 : 0
+
+    return {
+        ...payment,
+        platformFee: fee
+    }
+}
+
+console.log(`---Customer List---`)
+processPayment(transactions, printPayment)
+console.log(`---Category List---`)
+console.table(processPayment(transactions, categoryPayment))
+console.log(`---Fee List---`)
+console.table(processPayment(transactions, feePayment))

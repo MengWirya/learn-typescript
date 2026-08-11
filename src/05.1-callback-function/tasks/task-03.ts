@@ -1,7 +1,9 @@
 /**
  * An online store has the following products:
  */
-const products = [
+interface product {name: string, price: number}
+
+const productList: product[] = [
     { name: "Keyboard", price: 850000 },
     { name: "Mouse", price: 275000 },
     { name: "Monitor", price: 2200000 },
@@ -22,7 +24,7 @@ const products = [
  * Instead of creating a separate loop for every operation, the developer creates a reusable processing function.
  */
 
-function processProduct<T>(arr: any[], callback: (person: any) => T): T[] {
+function processProduct<T>(arr: product[], callback: (person: product) => T): T[] {
     const results: T[] = []
     for (let index = 0; index < arr.length; index++) {
         const result = callback(arr[index])
@@ -31,13 +33,21 @@ function processProduct<T>(arr: any[], callback: (person: any) => T): T[] {
     return results
 }
 
-// function determineExpensive<K>(products: K[]): K | null {
-    
-//     return products.reduce((max: any, item: any) => 
-//         (item.price > max.price) ? item : max
-//     );
-// }
+function displayProduct(product: product) {
+    console.log(`${product.name} - Rp${product.price}`)
+}
 
+function determineExpensive(product: product) {
+    product.price > 1000000 ? console.log(`${product.name} is Exspensive`) : product.price > 500000 ? console.log(`${product.name} is a little exspensive gain 10% discount`) : console.log(`${product.name} is regular`)
+}
+
+console.log(`---Prodcut List---`)
+processProduct(productList, displayProduct)
+console.log(`---Ekspensive List---`)
+processProduct(productList, determineExpensive)
+
+
+// IMPROVED
 // console.log("--- 1. Semua Produk ---");
 // products.forEach(p => console.log(`${p.name} - Rp${p.price}`));
 

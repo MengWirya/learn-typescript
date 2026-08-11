@@ -27,7 +27,11 @@
  * - It should only process the students and execute the callback.
  */
 
-const students = [
+interface Student {name: string, score: number, attendance: number}
+type RECOMMENDATION_RESULT = "Excellent" | "Good" | "Improve Attendance" | "Improve Academic Performance"
+interface studentResult extends Student {recomendation: RECOMMENDATION_RESULT}
+
+const students: Student[] = [
     { name: "Alya", score: 92, attendance: 96 },
     { name: "Budi", score: 68, attendance: 88 },
     { name: "Citra", score: 84, attendance: 91 },
@@ -35,3 +39,30 @@ const students = [
     { name: "Eka", score: 95, attendance: 82 },
     { name: "Fajar", score: 79, attendance: 97 }
 ];
+
+function processStudent<T>(arr: Student[], callback: (student: Student) => T): T[] {
+    const results: T[] = []
+    for (let index = 0; index < arr.length; index++) {
+        const result = callback(arr[index])
+        results.push(result)
+    }
+    return results
+}
+
+function studentStatus(student: Student) {
+    student.score >= 75 && student.attendance >= 90 ? console.log(`Student ${student.name} - Pass`) : console.log(`Student ${student.name} - Failed`)
+}
+
+function studentRecomendation(student: Student): studentResult {
+    const recomendationResult = student.score >= 90 && student.attendance >= 90 ? "Excellent" : student.score >= 75 && student.attendance >= 90 ? "Good" : student.score >= 75 && student.attendance >= 90 ? "Improve Attendance" : "Improve Academic Performance"
+
+    return {
+        ...student,
+        recomendation: recomendationResult
+    }
+}
+
+console.log(`---Student List---`)
+processStudent(students, studentStatus)
+console.log(`---Student Recommendation---`)
+console.table(processStudent(students, studentRecomendation))
