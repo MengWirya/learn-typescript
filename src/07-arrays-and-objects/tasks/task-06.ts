@@ -24,3 +24,33 @@ const borrowings = [
     { student: "Eka", bookId: 1, days: 4 },
     { student: "Andi", bookId: 3, days: 8 },
 ];
+
+const combinedArray = borrowings.map((data) => {
+    const bookData = books.find((book) => book.id === data.bookId) 
+    
+    return {
+        ...data,
+        title: bookData?.title,
+        category: bookData?.category,
+        stock: bookData?.stock
+    }
+})
+
+console.log(`\nTask 1`)
+console.table(combinedArray.filter((data) => data.student === "Andi"), ['student', 'bookId', 'title'])
+
+console.log(`\nTask 2`)
+console.table(combinedArray)
+
+console.log(`\nTask 3`)
+console.table(combinedArray.filter((data) => data.category === "Programming"), ['student', 'title', 'category'])
+
+console.log(`\nTask 4`)
+console.log(`Total Books ${books.reduce((sum, data) => data.stock ? sum += data.stock : 0 ,0)}`)
+
+console.log(`\nTask 5`)
+const averageTimeBorrowing = combinedArray.reduce((sum, data) => sum += data.days ,0) / combinedArray.length
+console.log(`Average Time for Borrowing Book: ${averageTimeBorrowing}`)
+
+console.log(`\nTask 6`)
+console.table(combinedArray.filter((data) => data.days > 7))

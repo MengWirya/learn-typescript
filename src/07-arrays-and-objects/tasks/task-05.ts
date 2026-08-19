@@ -26,3 +26,29 @@ const students = [
 ];
 
 const correctAnswers = ["A", "B", "C", "A", "B"];
+
+console.log(`\nTask 1`)
+const correctedStudents = students.map((student) => {
+    const check = student.answers.map((answer, i) => answer === correctAnswers[i])
+    let score = 0
+    check.forEach((data) => data ? score += 20 : score)
+    return {
+        ...student,
+        isCorrect: check,
+        score: score,
+    }
+})
+console.table(correctedStudents, ['name', 'score'])
+
+console.log(`\nTask 2`)
+console.table(correctedStudents.filter((data) => data.score > 70))
+
+console.log(`\nTask 3`)
+const HighestScorer = correctedStudents.reduce((highestScore, data) => {
+    return data.score > highestScore.score ? data: highestScore
+})
+console.log(`Highest Scorer: ${HighestScorer.name}`)
+
+console.log(`\nTask 4`)
+const totalScore = correctedStudents.reduce((sum, data) => sum += data.score, 0)
+console.log(`Average: ${totalScore / correctedStudents.length}`)

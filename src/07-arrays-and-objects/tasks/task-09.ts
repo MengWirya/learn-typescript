@@ -33,3 +33,15 @@ const posts = [
     likes: 300,
   },
 ];
+
+console.log(`\nTask 1`)
+console.table(posts.filter((data) => data.hashtags.find((info) => info === "typescript")))
+
+console.log(`\nTask 2`)
+console.table(posts.filter((data) => data.hashtags.find((info) => info === "nestjs")))
+
+console.log(`\nTask 3`)
+console.log(posts.sort(function(a, b){return b.likes - a.likes})[0])
+
+console.log(`\nTask 4`)
+console.log(posts.reduce((sum, data) => sum += data.likes ,0))

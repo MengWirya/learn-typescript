@@ -35,3 +35,26 @@ const orders = [
         ],
     },
 ];
+
+console.log(`\nTask 1`)
+console.table(orders.filter((data) => data.status === "completed"))
+
+console.log(`\nTask 2`)
+const paymentDetails = orders.map((data) => {
+    const subtotal = data.items.reduce((sum, info) => sum += info.price * info.quantity ,0)
+
+    return {
+        ...data,
+        subtotal: subtotal,
+    }
+})
+console.table(paymentDetails, ['id', 'customer', 'subtotal'])
+
+console.log(`\nTask 3`)
+console.table(paymentDetails.sort(function(a, b){return b.subtotal - a.subtotal}))
+
+console.log(`\nTask 4`)
+console.log(`Total Penghasilan: ${paymentDetails.reduce((sum, data) => data.status === "completed" ? sum += data.subtotal : sum ,0)}`)
+
+console.log(`\nTask 5`)
+console.log(paymentDetails.filter((data) => data.status === "completed"))

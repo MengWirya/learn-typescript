@@ -1,3 +1,5 @@
+import { info } from "node:console";
+
 /**
  * An online exam has students and questions.
  * Tasks:
@@ -71,4 +73,37 @@ const submissions = [
         ],
     },
 ];
+
+const combinedArray = submissions.map((data) => {
+    const question = data.answers.map((info) => {
+        const questionDetail = questions.find((ans) => ans.id === info.questionId)
+
+        return {
+            ...info,
+            questionDetail: questionDetail
+        }
+    })
+
+    return {
+        ...data,
+        answerKeys: question
+    }
+})
+
+const detailedArray = combinedArray.map((data) => {
+    const correct = data.answerKeys.reduce((total, info) => {
+        const info.answer === info.questionDetail?.correctAnswer ?  : 0, 0
+    })
+
+    return {
+        ...data,
+        totalCorrect: correct,
+        totalIncorrecz: incorrect,
+    }
+})
+
+console.log(JSON.stringify(combinedArray, null, 2));
+
+console.log(`\nTask 1`)
+
 

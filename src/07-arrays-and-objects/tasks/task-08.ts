@@ -1,3 +1,5 @@
+import { info } from "node:console";
+
 /**
  * A company evaluates employees based on several projects.
  * Tasks:
@@ -32,3 +34,21 @@ const employees = [
         ],
     },
 ];
+
+const employeesDetail = employees.map((data) => {
+    const averageScore = data.projects.reduce((sum, info) => sum += info.score ,0) / data.projects.length
+
+    return {
+        ...data,
+        averageScore: averageScore
+    }
+})
+
+console.log(`\nTask 1`)
+console.table(employeesDetail, ['name', 'averageScore'])
+
+console.log(`\nTask 2`)
+console.table(employeesDetail.filter((data) => data.averageScore >= 85), ['name', 'averageScore'])
+
+console.log(`\nTask 3`)
+console.log(employeesDetail.filter((data) => data.projects.find((info) => info.score < 80)))

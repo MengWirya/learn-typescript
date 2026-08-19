@@ -22,3 +22,26 @@ const students = [
   { name: "Deni", score: 74 },
   { name: "Eka", score: 55 },
 ];
+
+const nameArray = students.map(student => student.name)
+console.log(nameArray)
+
+
+console.log(`\n`)
+console.log(students.filter((student) => student.score >= 70))
+
+
+console.log(`\n`)
+console.log(students.filter((student) => student.name === "Citra"))
+console.log(students.some((student) => student.name === "Citra"))
+
+
+let totalScore = 0
+students.forEach((student) => {
+  totalScore += student.score
+})
+const averageScore = totalScore / students.length
+console.log(`\n`)
+console.log(`Average Score: ${averageScore}`)
+
+

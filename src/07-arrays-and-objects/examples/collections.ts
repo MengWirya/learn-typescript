@@ -8,10 +8,20 @@
 const numbers = [1, 2, 3, 4, 5];
 
 console.log("=== Array Methods ===");
+// Map membuat array baru
 console.log("map (double):", numbers.map((n) => n * 2));
+
+// Filter memfilter array
 console.log("filter (even):", numbers.filter((n) => n % 2 === 0));
+
+// Reduce looping array
 console.log("reduce (sum):", numbers.reduce((sum, n) => sum + n, 0));
+
+// find mencari NILAI PERTAMA yang sesuai dengan kriteria (Beda dengan filter yang mengembalikan semua nilai yang sessuai dengan kriteria)
 console.log("find (>3):", numbers.find((n) => n > 3));
+
+// Mengecek apakah array tersebut mengandung kriteria yang kita set (catat kalau include harus langsung dimasukin nilainya)
+// Jika ingin menggunakan kriteria yang menggunakan if gunakanlah .some()
 console.log("includes(3):", numbers.includes(3));
 
 // Destructuring
