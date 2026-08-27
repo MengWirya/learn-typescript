@@ -66,8 +66,6 @@ function employeeProcess<T>(arr: Employee[], callback: (employee: Employee) => T
 const employeeWithFinalSalary = employeeProcess(employees, calculateFinalSalary)
 const employeeWithPerformanceStatus = employeeProcess(employees, getPerformanceStatus)
 
-console.log(`====== EMPLOYEES WITH FINAL SALARY + BONUS ======`);
-console.log({ employees: employeeWithFinalSalary })
-console.log(`====== EMPLOYEES WITH PERFORMANCE STATUS ======`);
-console.log({ employees: employeeWithPerformanceStatus })
+console.log(`employeesFinaleSalary: ${employeeWithFinalSalary}`)
+console.log(`employees: ${employeeWithPerformanceStatus}`)
 

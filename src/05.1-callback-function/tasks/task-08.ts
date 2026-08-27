@@ -85,9 +85,9 @@ function feePayment(payment: transaction): transactionFee {
     }
 }
 
-console.log(`---Customer List---`)
+console.log(`Customer List`)
 processPayment(transactions, printPayment)
-console.log(`---Category List---`)
+console.log(`Category List`)
 console.table(processPayment(transactions, categoryPayment))
-console.log(`---Fee List---`)
+console.log(`Fee List`)
 console.table(processPayment(transactions, feePayment))

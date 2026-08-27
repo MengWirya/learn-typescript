@@ -1,5 +1,3 @@
-import { info } from "node:console";
-
 /**
  * An online exam has students and questions.
  * Tasks:
@@ -91,19 +89,51 @@ const combinedArray = submissions.map((data) => {
 })
 
 const detailedArray = combinedArray.map((data) => {
+    let totalScore = 0
     const correct = data.answerKeys.reduce((total, info) => {
-        const info.answer === info.questionDetail?.correctAnswer ?  : 0, 0
-    })
+        const isCorrect = info.answer === info.questionDetail?.correctAnswer;
+        isCorrect ? totalScore += 1 : totalScore
+        return isCorrect ? total + 1 : total;
+    }, 0);
+
+    const incorrect = data.answerKeys.length - correct
 
     return {
         ...data,
         totalCorrect: correct,
-        totalIncorrecz: incorrect,
+        totalIncorrect: incorrect,
+        totalScore: totalScore * 25,
     }
 })
 
-console.log(JSON.stringify(combinedArray, null, 2));
-
 console.log(`\nTask 1`)
+console.table(detailedArray, ['student', 'totalScore'])
+
+console.log(`\nTask 2`)
+console.table(detailedArray, ['student', 'totalCorrect', 'totalIncorrect'])
+
+console.log(`\nTask 3`);
+// const categories = [...new Set(questions.map(q => q.category))];
+
+// const categoryAverages = categories.map((category) => {
+//     let totalCategoryPoints = 0;
+//     detailedArray.forEach((student) => {
+//         student.answerKeys.forEach((ans) => {
+//             if (ans.questionDetail?.category === category && ans.answer === ans.questionDetail?.correctAnswer) {
+//                 totalCategoryPoints += 25;
+//             }
+//         });
+//     });
+
+//     // const totalPossiblePoints = categoriesInfo[category].maxPoints * submissions.length;
+//     // const averagePercentage = (totalCategoryPoints / totalPossiblePoints) * 100;
+
+//     return {
+//         category: category,
+//         averageScore: totalCategoryPoints / submissions.length
+//     };
+// });
+
+// console.table(categoryAverages);
 
 

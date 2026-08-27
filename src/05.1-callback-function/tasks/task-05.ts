@@ -86,7 +86,5 @@ function processOrder<T>(arr: Order[], callback: (order: Order) => T): T[] {
 const orderWithPaymentStatus = processOrder(orders, getPaymentStatus)
 const orderWithShippingCategory = processOrder(orders, getShippingCategory)
 
-console.log(`====== ORDER WITH PAYMENT STATUS ======`);
-console.log({ orders: orderWithPaymentStatus })
-console.log(`====== ORDER WITH SHIPPING CATEGORY ======`);
-console.log({ orders: orderWithShippingCategory })
+console.log(`orders: ${orderWithPaymentStatus}`)
+console.log(`orders: ${orderWithShippingCategory}`)
