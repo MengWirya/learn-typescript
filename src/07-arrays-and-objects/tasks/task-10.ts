@@ -75,13 +75,11 @@ const submissions = [
 const combinedArray = submissions.map((data) => {
     const question = data.answers.map((info) => {
         const questionDetail = questions.find((ans) => ans.id === info.questionId)
-
         return {
             ...info,
             questionDetail: questionDetail
         }
     })
-
     return {
         ...data,
         answerKeys: question
@@ -106,34 +104,67 @@ const detailedArray = combinedArray.map((data) => {
     }
 })
 
-console.log(`\nTask 1`)
-console.table(detailedArray, ['student', 'totalScore'])
+console.log(`\n Task 1`);
+console.table(detailedArray, ['student', 'totalScore']);
 
-console.log(`\nTask 2`)
+console.log(`\n Task 2`);
 console.table(detailedArray, ['student', 'totalCorrect', 'totalIncorrect'])
 
-console.log(`\nTask 3`);
-// const categories = [...new Set(questions.map(q => q.category))];
+console.log(`\n Task 3`);
+const categories = [...new Set(questions.map(q => q.category))];
 
-// const categoryAverages = categories.map((category) => {
-//     let totalCategoryPoints = 0;
-//     detailedArray.forEach((student) => {
-//         student.answerKeys.forEach((ans) => {
-//             if (ans.questionDetail?.category === category && ans.answer === ans.questionDetail?.correctAnswer) {
-//                 totalCategoryPoints += 25;
-//             }
-//         });
-//     });
+const categoryAverages = categories.map((category) => {
+    let totalCategoryPoints = 0;
+    
+    detailedArray.forEach((student) => {
+        student.answerKeys.forEach((ans) => {
+            if (ans.questionDetail?.category === category && ans.answer === ans.questionDetail?.correctAnswer) {
+                totalCategoryPoints += 25;
+            }
+        });
+    });
 
-//     // const totalPossiblePoints = categoriesInfo[category].maxPoints * submissions.length;
-//     // const averagePercentage = (totalCategoryPoints / totalPossiblePoints) * 100;
+    return {
+        category: category,
+        averageScore: totalCategoryPoints / submissions.length
+    };
+});
+console.table(categoryAverages);
 
-//     return {
-//         category: category,
-//         averageScore: totalCategoryPoints / submissions.length
-//     };
-// });
+console.log(`\n Task 4`);
+const totalStudents = detailedArray.length;
+let totalScoresSum = 0;
+let highestScore = 0; 
+let lowestScore = 100;
+let passedStudents = 0;
+let failedStudents = 0;
 
-// console.table(categoryAverages);
+detailedArray.forEach(student => {
+    const score = student.totalScore;
+    
+    totalScoresSum += score;
+    
+    if (score > highestScore) highestScore = score;
+    if (score < lowestScore) lowestScore = score;
+    
+    if (score > 50) {
+        passedStudents += 1;
+    } else {
+        failedStudents += 1;
+    }
+});
 
+const averageScore = Number((totalScoresSum / totalStudents).toFixed(2));
+const passRate = Number(((passedStudents / totalStudents) * 100).toFixed(2));
 
+const finalAnalytics = {
+    totalStudents,
+    averageScore,
+    highestScore,
+    lowestScore,
+    passedStudents,
+    failedStudents,
+    passRate
+};
+
+console.log(finalAnalytics);

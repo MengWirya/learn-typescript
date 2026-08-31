@@ -85,9 +85,22 @@ function feePayment(payment: transaction): transactionFee {
     }
 }
 
+let array: transaction[] = []
+
+function showPaid(payment: transaction) {
+    if (payment.status === "paid") {
+        array.push(payment)
+    } else {}
+}
+
+// console.table(transactions.filter((n) => n.status === "paid"))
+
 console.log(`Customer List`)
 processPayment(transactions, printPayment)
 console.log(`Category List`)
 console.table(processPayment(transactions, categoryPayment))
 console.log(`Fee List`)
 console.table(processPayment(transactions, feePayment))
+
+processPayment(transactions, showPaid)
+console.table(array)
